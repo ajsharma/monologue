@@ -7,6 +7,9 @@ VAGRANTFILE_API_VERSION = "2"
 # Use a custom name to allow simple app creation once the vagrant vm is up'ed
 APPLICATION_NAME = (File.basename(Dir.getwd).to_s || 'MyApplication').downcase
 
+# Which ruby to install on boot up
+RBENV_RUBY_VERSION = "2.1.2"
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
@@ -23,7 +26,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # config.vm.network "forwarded_port", guest: 80, host: 8080
-  config.vm.network "forwarded_port", guest: 3000, host: 3000
+  config.vm.network "forwarded_port", guest: 3000, host: 3003
   config.vm.network "forwarded_port", guest: 4567, host: 4567
 
   # Create a private network, which allows host-only access to the machine
@@ -106,8 +109,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "postgresql::contrib" # before server b/c server creates the dbs
     chef.add_recipe "postgresql::server"
     chef.add_recipe "postgresql::client"
-    chef.add_recipe "rvm::system"
-    chef.add_recipe "rvm::vagrant"
+    chef.add_recipe "ruby_build"
+    chef.add_recipe "rbenv::system"
+    chef.add_recipe "rbenv::user"
+    chef.add_recipe "rbenv::vagrant"
+
 
     # chef.add_role "web"
 
@@ -154,17 +160,22 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           ],
         "version" => "9.3"
         },
-      "rvm" => {
-        "default_ruby" => "ruby-2.1.2@#{APPLICATION_NAME}",
+      "rbenv" => {
         "rubies" => [
-          "ruby-2.0.0-p481",
-          "ruby-2.1.2"
+          RBENV_RUBY_VERSION
           ],
-        "rvmrc" => {
-          'rvm_project_rvmrc' => 1,
-          'rvm_gemset_create_on_use_flag' => 1,
-          'rvm_trust_rvmrcs_flag' => 1
-          }
+        "user_installs" => [
+          {
+            "user" => "vagrant",
+            "rubies" => [ RBENV_RUBY_VERSION ],
+            "global" => RBENV_RUBY_VERSION,
+            "gems" => {
+              RBENV_RUBY_VERSION => [
+                { "name" => "bundler" }
+                ]
+              }
+            }
+          ]
         }
       }
   end
