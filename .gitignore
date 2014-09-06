@@ -28,8 +28,6 @@ db/*.sqlite3
 .redcar/
 .vagrant/*
 .sass-cache
-/config/config.yml
-/config/database.yml
 /coverage.data
 /coverage/
 /db/*.javadb/
