@@ -114,7 +114,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "rbenv::user"
     chef.add_recipe "rbenv::vagrant"
 
-
     # chef.add_role "web"
 
     # You may also specify custom JSON attributes:
@@ -148,6 +147,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             "owner" => "vagrant",
             "template" => "template0"
             }
+          ],
+        "pg_hba" => [
+            { "type" => "local", "db" => "all", "user" => "postgres",   "addr" => "",             "method" => "peer"  },
+            { "type" => "local", "db" => "all", "user" => "all",        "addr" => "",             "method" => "trust" },
+            { "type" => "host",  "db" => "all", "user" => "all",        "addr" => "127.0.0.1/32", "method" => "trust" },
+            { "type" => "host",  "db" => "all", "user" => "all",        "addr" => "::1/128",      "method" => "trust" },
+            { "type" => "host",  "db" => "all", "user" => "postgres",   "addr" => "127.0.0.1/32", "method" => "trust" },
+            { "type" => "host",  "db" => "all", "user" => "username",   "addr" => "127.0.0.1/32", "method" => "trust" }
           ],
         "users" => [
           {
