@@ -5,6 +5,7 @@ gem 'bootstrap-sass'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
+gem "octokit", "~> 3.0"
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'pg'

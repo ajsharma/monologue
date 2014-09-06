@@ -1,6 +1,21 @@
 class User < ActiveRecord::Base
+
   enum role: [:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
+
+  has_many :auth_responses
+
+  def auth_response
+    @auth_response ||= auth_responses.last
+  end
+
+  def github_access_token
+    auth_response.github_access_token
+  end
+
+  def github_username
+    auth_response.github_username
+  end
 
   def set_default_role
     if User.count == 0
