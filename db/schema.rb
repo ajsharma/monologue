@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140820171242) do
+ActiveRecord::Schema.define(version: 20140906021101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "auth_responses", force: true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.text     "raw"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "auth_responses", ["user_id"], name: "index_auth_responses_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"
