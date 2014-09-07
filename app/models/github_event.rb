@@ -18,7 +18,11 @@ class GithubEvent
   end
 
   def user_events_by_day github_username
-    user_events( github_username ).group_by{ |event| event.created_at.to_date }
+    user_events_by_day = user_events( github_username ).group_by{ |event| event.created_at.to_date }
+    user_events_by_day.each do | date, events |
+      events.reverse!
+    end
+    user_events_by_day
   end
 
   def self.user_events_by_day github_access_token, github_username
