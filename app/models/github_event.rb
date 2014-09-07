@@ -7,7 +7,14 @@ class GithubEvent
   end
 
   def user_events github_username
-    github_api_client.user_events github_username
+    @user_events ||= {}
+    @user_events[ github_username ] ||= begin
+      events = []
+      for page in 1..5 do
+        events.concat( github_api_client.user_events( github_username, page: page ) )
+      end
+      events
+    end
   end
 
   def user_events_by_day github_username
