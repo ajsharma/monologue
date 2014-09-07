@@ -1,0 +1,11 @@
+<p>
+  Pushed to <var><%= github_event.payload.ref %></var> on <var><%= github_event.repo.name %></var>
+</p>
+
+<% github_event.payload.commits.each do |commit| %>
+  <blockquote>
+    <p>
+      <%= commit.message %>
+    </p>
+  </blockquote>
+<% end %>

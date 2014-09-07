@@ -1,10 +1,15 @@
 class GithubEventsController < ApplicationController
-  before_action :set_github_event, only: [:show, :edit, :update, :destroy]
 
   # GET /github_events
   # GET /github_events.json
   def index
-    @github_events = user_signed_in? ? github_api_client.user_events( current_user_github_username ) : []
+    @github_events_by_date ||= begin
+      if user_signed_in?
+        GithubEvent.user_events_by_day current_user_github_access_token, current_user_github_username
+      else
+        []
+      end
+    end
   end
 
   # GET /github_events/1
@@ -14,8 +19,8 @@ class GithubEventsController < ApplicationController
 
   private
 
-  def github_api_client
-    @github_api_client ||= Octokit::Client.new access_token: current_user.github_access_token
+  def current_user_github_access_token
+    current_user.github_access_token
   end
 
   def current_user_github_username

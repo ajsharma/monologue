@@ -1,19 +1,21 @@
-<h1>Listing Github</h1>
+<h1>Github Events</h1>
 
-
-<dl>
-  <% @github_events.each do |github_event| %>
-    <dt>
-      <%= github_event.type %>
-    </dt>
-    <dd>
-      <% if lookup_context.template_exists?(github_event.type.downcase, "github_events", true) %>
-        <%= render partial: "#{ github_event.type.downcase }" %>
-      <% else %>
-        <pre>
-          <%= github_event.inspect %>
-        </pre>
-      <% end %>
-    </dd>
+<% @github_events_by_date.each do |date, github_events| %>
+  <h2>
+    <%= pluralize github_events.count, 'Event' %>
+    on
+    <%= date.strftime'%A %Y/%m/%d' %>
+  </h2>
+  <% github_events.each do |github_event| %>
+    <% if lookup_context.template_exists?(github_event.type.underscore, "github_events", true) %>
+      <%= render "#{ github_event.type.underscore }", github_event: github_event %>
+    <% else %>
+      <h3>
+        <%= github_event.type %>
+      </h3>
+      <pre>
+        <%= github_event.inspect %>
+      </pre>
+    <% end %>
   <% end %>
-</dl>
+<% end %>
