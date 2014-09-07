@@ -4,7 +4,15 @@
 
 @import "bootstrap";
 
-.pull-request-action-closed,
-.pull-request-action-opened {
-  @extend .lead
+
+.event {
+  @extend .text-muted;
+}
+
+.event-issue-action-opened,
+.event-issue-action-closed,
+.event-pull-request-action-closed,
+.event-pull-request-action-opened,
+.event-push {
+  @extend .text-primary;
 }

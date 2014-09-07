@@ -4,7 +4,7 @@
     <small><%= date.strftime'%A %Y/%m/%d' %></small>
   </h2>
   <% github_events.each do |github_event| %>
-    <div class="<%= github_event.type.underscore.dasherize %>">
+    <div class="event <%= github_event.type.underscore.dasherize %>">
       <% if lookup_context.template_exists?(github_event.type.underscore, "github_events", true) %>
         <%= render "#{ github_event.type.underscore }", github_event: github_event %>
       <% else %>
