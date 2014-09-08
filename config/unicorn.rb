@@ -8,8 +8,9 @@ before_fork do |server, worker|
     Process.kill 'QUIT', Process.pid
   end
 
-  defined?( ActiveRecord::Base ) and
+  if defined?(ActiveRecord::Base)
     ActiveRecord::Base.connection.disconnect!
+  end
 end
 
 after_fork do |server, worker|
@@ -17,6 +18,11 @@ after_fork do |server, worker|
     puts 'Unicorn worker intercepting TERM and doing nothing. Wait for master to send QUIT'
   end
 
-  defined?( ActiveRecord::Base ) and
-    ActiveRecord::Base.establish_connection
+  if defined?(ActiveRecord::Base)
+    config = ActiveRecord::Base.configurations[Rails.env] ||
+                Rails.application.config.database_configuration[Rails.env]
+    config['reaping_frequency'] = ENV['DB_REAPING_FREQUENCY'] || 10 # seconds
+    config['pool']            =   ENV['DB_POOL'] || 2
+    ActiveRecord::Base.establish_connection(config)
+  end
 end
