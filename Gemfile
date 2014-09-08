@@ -34,3 +34,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-rescue'
 end
+
+group :production do
+  gem 'rails_12factor'
+end
