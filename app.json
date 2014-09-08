@@ -1,0 +1,27 @@
+{
+  "name": "Monologue",
+  "repository": "https://github.com/ajsharma/monologue",
+  "keywords": [
+    "activity",
+    "github",
+    "monologue"
+  ],
+  "scripts": {
+    "postdeploy": "bundle exec rake db:migrate"
+  },
+  "env": {
+    "OMNIAUTH_PROVIDER_KEY": {
+      "description": "A key provided by Github for OAuth",
+    },
+    "OMNIAUTH_PROVIDER_SECRET": {
+      "description": "A secret provided by Github for OAuth",
+    },
+    "SECRET_TOKEN": {
+      "description": "A secret key for verifying the integrity of signed cookies.",
+      "generator": "secret"
+    },
+  },
+  "addons": [
+    "heroku-postgresql"
+  ]
+}
