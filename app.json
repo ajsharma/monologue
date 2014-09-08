@@ -19,6 +19,10 @@
     "SECRET_TOKEN": {
       "description": "A secret key for verifying the integrity of signed cookies.",
       "generator": "secret"
+    },
+    "WEB_CONCURRENCY": {
+      "description": "Number of unicorn worker processes",
+      "value": "3"
     }
   },
   "addons": [
