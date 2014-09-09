@@ -2,9 +2,18 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+p {
+  word-break: break-word;
+  font-size: 16px;
+}
+
 // make typography bigger
 blockquote {
   word-break: break-word;
+
+  p {
+    font-size: 14px;
+  }
 }
 
 // make all images responsive by default
