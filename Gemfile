@@ -4,6 +4,7 @@ ruby '2.1.2'
 # first in case other gems use environmental variables
 gem 'dotenv-rails', :groups => [:development, :test]
 
+gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jbuilder', '~> 2.0'
