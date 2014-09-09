@@ -2,6 +2,11 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+// make typography bigger
+blockquote {
+  word-break: break-word;
+}
+
 // make all images responsive by default
 img {
   @extend .img-responsive;
