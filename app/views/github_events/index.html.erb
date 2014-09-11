@@ -1,6 +1,15 @@
-<div class="container">
+<div class="container" data-spy="scroll" data-target=".github-events-by-date-navbar">
+
+  <ul class="nav nav-pills" role="tablist">
+    <% @github_events_by_date.each do |date, github_events| %>
+      <li>
+        <%= link_to date.strftime('%A %Y/%m/%d'), "\#date-#{ date }" %>
+      </li>
+    <% end %>
+  </ul>
+
   <% @github_events_by_date.each do |date, github_events| %>
-    <h2>
+    <h2 id="<%= "date-#{ date }" %>">
       <%= pluralize github_events.count, 'Event' %>
       <small><%= date.strftime'%A %Y/%m/%d' %></small>
     </h2>
