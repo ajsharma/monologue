@@ -16,6 +16,10 @@
     "OMNIAUTH_PROVIDER_SECRET": {
       "description": "A secret provided by Github for OAuth"
     },
+    "TIME_ZONE": {
+      "description": "The time zone you wish to localize the events to",
+      "value": "Pacific Time (US & Canada)"
+    },
     "SECRET_TOKEN": {
       "description": "A secret key for verifying the integrity of signed cookies.",
       "generator": "secret"
