@@ -2,10 +2,10 @@
   Pushed to <var><%= github_event.payload.ref %></var> on <var><%= github_event.repo.name %></var>
 </p>
 
-<% github_event.payload.commits.each do |commit| %>
-  <blockquote>
-    <p>
+<ul>
+  <% github_event.payload.commits.each do |commit| %>
+    <li>
       <%= commit.message %>
-    </p>
-  </blockquote>
-<% end %>
+    </li>
+  <% end %>
+</ul>
