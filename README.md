@@ -1,6 +1,10 @@
 Monologue
 ================
 
+[![Build Status](https://travis-ci.org/ajsharma/monologue.svg?branch=master)](https://travis-ci.org/ajsharma/monologue)
+[![Test Coverage](https://codeclimate.com/github/ajsharma/monologue/badges/coverage.svg)](https://codeclimate.com/github/ajsharma/monologue)
+[![Code Climate](https://codeclimate.com/github/ajsharma/monologue/badges/gpa.svg)](https://codeclimate.com/github/ajsharma/monologue)
+
 Deploy to Heroku
 ----------------
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
