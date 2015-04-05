@@ -4,6 +4,9 @@ rvm:
 before_script:
 - cp config/database.travis.yml config/database.yml
 - psql -c 'create database travis_ci_test;' -U postgres
-bundler_args: --without development
+bundler_args: "--without development"
 addons:
   postgresql: 9.3
+env:
+  global:
+    secure: iGoYYzYEqFjqL2bsFFmwOlmenq2k0DbEAgihVE66yP1D4NqleKUma9XDd18ua1IbypkOkcFsxQd7NXZ7tFZuPIfTAHpx/t2NNX6qrHCdMyGsMd36QtlLQJBSK72jyNwKIoz/A0zBSSp8r4WRaBbIyBdxiA+ah2vvO1LF2JMbJnU=
