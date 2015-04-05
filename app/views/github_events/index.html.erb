@@ -1,31 +1,28 @@
-<div class="container" data-spy="scroll" data-target=".github-events-by-date-navbar">
-
-  <ul class="nav nav-pills" role="tablist">
-    <% @github_events_by_date.each do |date, github_events| %>
-      <li>
-        <%= link_to date.strftime('%A %Y/%m/%d'), "\#date-#{ date }" %>
-      </li>
-    <% end %>
-  </ul>
-
+<ul class="nav nav-pills" role="tablist">
   <% @github_events_by_date.each do |date, github_events| %>
-    <h2 id="<%= "date-#{ date }" %>">
-      <%= pluralize github_events.count, 'Event' %>
-      <small><%= date.strftime'%A %Y/%m/%d' %></small>
-    </h2>
-    <% github_events.each do |github_event| %>
-      <div class="event <%= github_event.type.underscore.dasherize %>">
-        <% if lookup_context.template_exists?(github_event.type.underscore, "github_events", true) %>
-          <%= render "#{ github_event.type.underscore }", github_event: github_event %>
-        <% else %>
-          <h3>
-            <%= github_event.type %>
-          </h3>
-          <pre>
-            <%= github_event.inspect %>
-          </pre>
-        <% end %>
-      </div>
-    <% end %>
+    <li>
+      <%= link_to date.strftime('%A %Y/%m/%d'), "\#date-#{ date }" %>
+    </li>
   <% end %>
-</div>
+</ul>
+
+<% @github_events_by_date.each do |date, github_events| %>
+  <h2 id="<%= "date-#{ date }" %>">
+    <%= pluralize github_events.count, 'Event' %>
+    <small><%= date.strftime'%A %Y/%m/%d' %></small>
+  </h2>
+  <% github_events.each do |github_event| %>
+    <div class="event <%= github_event.type.underscore.dasherize %>">
+      <% if lookup_context.template_exists?(github_event.type.underscore, "github_events", true) %>
+        <%= render "#{ github_event.type.underscore }", github_event: github_event %>
+      <% else %>
+        <h3>
+          <%= github_event.type %>
+        </h3>
+        <pre>
+          <%= github_event.inspect %>
+        </pre>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
