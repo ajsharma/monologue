@@ -2,7 +2,8 @@ language: ruby
 rvm:
 - 2.1.2
 before_script:
-- psql -c 'create database monologue_test;' -U vagrant
+- cp config/database.travis.yml config/database.yml
+- psql -c 'create database travis_ci_test;' -U postgres
 bundler_args: --without development
 addons:
   postgresql: 9.3
