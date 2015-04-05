@@ -32,6 +32,7 @@ group :development do
 end
 
 group :development, :test do
+  gem "codeclimate-test-reporter", require: nil
   gem 'pry-rails'
   gem 'pry-rescue'
 end
