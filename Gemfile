@@ -24,6 +24,7 @@ gem 'unicorn'
 gem 'unicorn-rails'
 
 group :development do
+  gem 'annotate'
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
   gem 'foreman'
