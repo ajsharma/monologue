@@ -1,9 +1,12 @@
 class User < ActiveRecord::Base
 
   enum role: [:user, :vip, :admin]
+
   after_initialize :set_default_role, :if => :new_record?
 
   has_many :auth_responses
+
+  scope :where_auth, ->( provider, uid ){ where provider: provider.to_s, uid: uid.to_s }
 
   def auth_response
     @auth_response ||= auth_responses.last
@@ -25,7 +28,11 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.create_with_omniauth(auth)
+  def self.find_or_create_with_omniauth auth
+    where_auth( auth['provider'], auth['uid'] ).first || create_with_omniauth( auth )
+  end
+
+  def self.create_with_omniauth auth
     create! do |user|
       user.provider = auth['provider']
       user.uid = auth['uid']
