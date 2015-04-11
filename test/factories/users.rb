@@ -11,14 +11,16 @@
 #  role       :integer
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+FactoryGirl.define do
 
-# one:
-#   name: MyString
-#   provider: MyString
-#   uid: MyString
+  factory :user do
+    role :user
 
-# two:
-#   name: MyString
-#   provider: MyString
-#   uid: MyString
+    trait :with_repos do
+      after :create do |user|
+        user.repos << FactoryGirl.create_list( :repo, 5 )
+      end
+    end
+  end
+
+end

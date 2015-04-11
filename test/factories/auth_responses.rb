@@ -10,12 +10,3 @@
 #  updated_at :datetime
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-# one:
-#   user_id:
-#   raw: MyText
-
-# two:
-#   user_id:
-#   raw: MyText

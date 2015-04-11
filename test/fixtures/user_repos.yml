@@ -1,11 +1,10 @@
 # == Schema Information
 #
-# Table name: auth_responses
+# Table name: user_repos
 #
 #  id         :integer          not null, primary key
 #  user_id    :integer
-#  provider   :string(255)
-#  raw        :text
+#  repo_id    :integer
 #  created_at :datetime
 #  updated_at :datetime
 #
@@ -14,8 +13,8 @@
 
 # one:
 #   user_id:
-#   raw: MyText
+#   repo_id:
 
 # two:
 #   user_id:
-#   raw: MyText
+#   repo_id:

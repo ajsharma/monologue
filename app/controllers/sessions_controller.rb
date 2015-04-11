@@ -6,10 +6,12 @@ class SessionsController < ApplicationController
 
   def create
     auth = request.env["omniauth.auth"]
+
     user = User.find_or_create_with_omniauth auth
     user.auth_responses.create! provider: auth['provider'], raw: auth
-    reset_session
-    session[:user_id] = user.id
+
+    self.current_user = user
+
     redirect_to root_url, :notice => 'Signed in!'
   end
 
