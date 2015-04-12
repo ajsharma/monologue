@@ -1,6 +1,12 @@
 module NestedUnderRepo
   extend ActiveSupport::Concern
 
+  included do
+    helper_method :current_org_name
+    helper_method :current_repo_name
+    helper_method :current_repository_full_name
+  end
+
   def current_org_name
     params[:org]
   end
