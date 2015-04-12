@@ -3,20 +3,14 @@
 <table>
   <thead>
     <tr>
-      <th>Github</th>
       <th>Name</th>
-      <th>Full name</th>
-      <th>Description</th>
     </tr>
   </thead>
 
   <tbody>
     <% @repos.each do |repo| %>
       <tr>
-        <td><%= repo.provider_id %></td>
-        <td><%= repo.name %></td>
-        <td><%= repo.full_name %></td>
-        <td><%= repo.description %></td>
+        <td><%= link_to repo.full_name, issues_path(org: repo_full_name_to_org(repo.full_name), repo: repo_full_name_to_name(repo.full_name)) %></td>
       </tr>
     <% end %>
   </tbody>

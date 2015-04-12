@@ -1,9 +1,11 @@
-<p id="notice"><%= notice %></p>
+<ul class="nav nav-pills" role="tablist">
+  <% @members.each do |member| %>
+    <li>
+      <%= link_to member.login, issues_path(org: current_org_name, repo: current_repo_name, username: member.login) %>
+    </li>
+  <% end %>
+</ul>
 
-<h1>Closed Issues</h1>
 
-<%= render partial: "list", locals: { issues: @closed_issues } %>
-
-<h1>Open Issues</h1>
-
-<%= render partial: "list", locals: { issues: @open_issues } %>
+<%= render partial: "list", locals: { title: "Closed Issues", issues: @closed_issues } %>
+<%= render partial: "list", locals: { title: "Open Issues", issues: @open_issues } %>
