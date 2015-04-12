@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Closed Issues</h1>
+
+<%= render partial: "list", locals: { issues: @closed_issues } %>
+
+<h1>Open Issues</h1>
+
+<%= render partial: "list", locals: { issues: @open_issues } %>

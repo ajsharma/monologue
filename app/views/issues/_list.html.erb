@@ -1,0 +1,15 @@
+<table>
+  <thead>
+    <tr>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% issues.each do |issue| %>
+      <tr>
+        <td><%= issue.title %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

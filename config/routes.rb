@@ -9,5 +9,7 @@ Rails.application.routes.draw do
   get '/signin' => 'sessions#new', :as => :signin
   get '/signout' => 'sessions#destroy', :as => :signout
 
+  get '/:org/:repo/issues(/:username)' => 'issues#index', :as => :issues
+
   root to: 'github_events#index'
 end
