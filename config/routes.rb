@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :github_events, :only => [ :index, :show ]
-  resources :repos, :only => [ :index, :show ]
+  resources :repos, :only => [ :index ]
 
   get '/auth/:provider/callback' => 'sessions#create', :as => :auth_create
   get '/auth/failure' => 'sessions#failure'
@@ -11,5 +11,5 @@ Rails.application.routes.draw do
 
   get '/:org/:repo/issues(/:username)' => 'issues#index', :as => :issues
 
-  root to: 'github_events#index'
+  root to: 'repos#index'
 end
