@@ -12,26 +12,39 @@ class ApplicationController < ActionController::Base
     session[:user_id] = user.id
   end
 
+  def current_user_github_access_token
+    current_user.github_access_token
+  end
+
+  def current_user_github_username
+    current_user.github_username
+  end
+
+  def current_repository
+    "#{params[ :org ]}/#{params[:repo]}"
+  end
+
   private
-    def current_user
-      @current_user ||= User.find(session[:user_id]) if session[:user_id]
-    end
 
-    def user_signed_in?
-      return true if current_user
-    end
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
 
-    def correct_user?
-      @user = User.find(params[:id])
-      unless current_user == @user
-        redirect_to root_url, :alert => "Access denied."
-      end
-    end
+  def user_signed_in?
+    return true if current_user
+  end
 
-    def authenticate_user!
-      if !current_user
-        redirect_to root_url, :alert => 'You need to sign in for access to this page.'
-      end
+  def correct_user?
+    @user = User.find(params[:id])
+    unless current_user == @user
+      redirect_to root_url, :alert => "Access denied."
     end
+  end
+
+  def authenticate_user!
+    if !current_user
+      redirect_to root_url, :alert => 'You need to sign in for access to this page.'
+    end
+  end
 
 end

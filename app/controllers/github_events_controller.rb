@@ -17,14 +17,4 @@ class GithubEventsController < ApplicationController
   def show
   end
 
-  private
-
-  def current_user_github_access_token
-    current_user.github_access_token
-  end
-
-  def current_user_github_username
-    current_user.github_username
-  end
-
 end
