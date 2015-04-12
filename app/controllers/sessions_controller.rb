@@ -12,16 +12,16 @@ class SessionsController < ApplicationController
 
     self.current_user = user
 
-    redirect_to root_url, :notice => 'Signed in!'
+    redirect_to root_url, notice: 'Signed in!'
   end
 
   def destroy
     reset_session
-    redirect_to root_url, :notice => 'Signed out!'
+    redirect_to root_url, notice: 'Signed out!'
   end
 
   def failure
-    redirect_to root_url, :alert => "Authentication error: #{params[:message].humanize}"
+    redirect_to root_url, alert: "Authentication error: #{params[:message].humanize}"
   end
 
 end
