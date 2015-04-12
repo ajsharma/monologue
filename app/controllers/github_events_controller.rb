@@ -5,7 +5,7 @@ class GithubEventsController < ApplicationController
   def index
     @github_events_by_date ||= begin
       if user_signed_in?
-        GithubEvent.user_events_by_day current_user_github_access_token, current_user_github_username
+        Github::Event.user_events_by_day current_user_github_access_token, current_user_github_username
       else
         []
       end
