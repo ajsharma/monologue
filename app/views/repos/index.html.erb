@@ -1,0 +1,23 @@
+<h1>Listing repos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Github</th>
+      <th>Name</th>
+      <th>Full name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @repos.each do |repo| %>
+      <tr>
+        <td><%= repo.provider_id %></td>
+        <td><%= repo.name %></td>
+        <td><%= repo.full_name %></td>
+        <td><%= repo.description %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

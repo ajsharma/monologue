@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
   resources :github_events, :only => [ :index, :show ]
+  resources :repos, :only => [ :index, :show ]
 
-  get '/auth/:provider/callback' => 'sessions#create'
+  get '/auth/:provider/callback' => 'sessions#create', :as => :auth_create
   get '/auth/failure' => 'sessions#failure'
 
   get '/signin' => 'sessions#new', :as => :signin

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class GithubEventsControllerTest < ActionController::TestCase
+class GithubEventsControllerTest < ApplicationControllerTest
 
   test "should get index" do
     get :index

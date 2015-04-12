@@ -9,12 +9,13 @@ gem 'bootstrap-sass'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
-gem "octokit", "~> 3.0"
+gem 'octokit', '~> 3.0'
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'pg'
 gem 'pundit'
 gem 'rails', '4.1.5'
+gem 'rails_12factor'
 gem 'sass-rails', '~> 4.0.3'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'simple_form'
@@ -33,11 +34,10 @@ group :development do
 end
 
 group :development, :test do
-  gem "codeclimate-test-reporter", require: nil
+  gem 'codeclimate-test-reporter', require: nil
+  gem 'factory_girl'
+  gem 'factory_girl_rails'
+  gem 'faker'
   gem 'pry-rails'
   gem 'pry-rescue'
-end
-
-group :production do
-  gem 'rails_12factor'
 end

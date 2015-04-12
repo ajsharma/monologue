@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
   after_initialize :set_default_role, :if => :new_record?
 
   has_many :auth_responses
+  has_many :repos, through: :user_repos
+  has_many :user_repos
 
   scope :where_auth, ->( provider, uid ){ where provider: provider.to_s, uid: uid.to_s }
 
