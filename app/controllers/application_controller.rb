@@ -24,10 +24,6 @@ class ApplicationController < ActionController::Base
     params[:username] || current_user_github_username
   end
 
-  def current_repository
-    "#{params[:org]}/#{params[:repo]}"
-  end
-
   private
 
   def current_user
