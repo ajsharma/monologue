@@ -1,11 +1,5 @@
 module Github
-  class Event
-
-    attr_reader :github_access_token
-
-    def initialize github_access_token
-      @github_access_token = github_access_token
-    end
+  class Event < Base
 
     def user_events github_username
       @user_events ||= {}
@@ -41,12 +35,6 @@ module Github
 
     def self.organization_events_by_day github_access_token, github_username, github_organization
       self.new( github_access_token ).organization_events_by_day github_username, github_organization
-    end
-
-    private
-
-    def github_api_client
-      @github_api_client ||= Octokit::Client.new access_token: github_access_token
     end
 
   end
