@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_github_username
-    params[:username] || current_user_github_username
+    current_user_github_username
   end
 
   private
