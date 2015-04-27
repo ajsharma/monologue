@@ -21,7 +21,7 @@ module Github
     end
 
     def self.user_events_by_day github_access_token, github_username
-      self.new( github_access_token ).user_events_by_day github_username
+      new( github_access_token ).user_events_by_day github_username
     end
 
     def organization_events github_username, github_organization
@@ -34,7 +34,7 @@ module Github
     end
 
     def self.organization_events_by_day github_access_token, github_username, github_organization
-      self.new( github_access_token ).organization_events_by_day github_username, github_organization
+      new( github_access_token ).organization_events_by_day github_username, github_organization
     end
 
   end
