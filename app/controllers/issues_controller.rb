@@ -4,8 +4,8 @@ class IssuesController < ApplicationController
   # GET /issues
   # GET /issues.json
   def index
-    @members = Github::Org.members current_user_github_access_token,
-      current_org_name
+    @members = Github::Repo.repository_assignees current_user_github_access_token,
+      current_repository_full_name
 
     @open_issues = Github::Issue.organization_issues current_user_github_access_token,
       current_repository_full_name,
