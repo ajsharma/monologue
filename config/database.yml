@@ -1,27 +1,15 @@
-development:
+default: &default
   adapter: postgresql
-  database: <%= Rails.application.secrets[:database][:name] %>
   encoding: utf8
-  host: <%= Rails.application.secrets[:database][:host] %>
-  password: <%= Rails.application.secrets[:database][:password] %>
   pool: <%= ENV['DB_POOL'] || 2 %>
   reaping_frequency: <%= ENV['DB_REAPING_FREQUENCY'] || 30 %>
-  username: <%= Rails.application.secrets[:database][:username] %>
+  url: <%= ENV['DATABASE_URL'] %>
+
+development:
+  <<: *default
 
 test:
-  adapter: postgresql
-  database: <%= Rails.application.secrets[:database][:name] %>
-  encoding: utf8
-  host: <%= Rails.application.secrets[:database][:host] %>
-  password: <%= Rails.application.secrets[:database][:password] %>
-  pool: <%= ENV['DB_POOL'] || 2 %>
-  reaping_frequency: <%= ENV['DB_REAPING_FREQUENCY'] || 30 %>
-  username: <%= Rails.application.secrets[:database][:username] %>
+  <<: *default
 
 production:
-  adapter: postgresql
-  database: <%= ENV['DATABASE_URL'] %>
-  encoding: utf8
-  host: <%= Rails.application.secrets[:database][:host] %>
-  pool: <%= ENV['DB_POOL'] || 2 %>
-  reaping_frequency: <%= ENV['DB_REAPING_FREQUENCY'] || 30 %>
+  <<: *default
