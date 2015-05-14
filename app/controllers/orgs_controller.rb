@@ -1,5 +1,6 @@
 class OrgsController < ApplicationController
   include NestedUnderRepo
+  include RequiresCurrentUser
 
   # GET /orgs
   # GET /orgs.json

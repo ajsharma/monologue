@@ -1,5 +1,6 @@
 class IssuesController < ApplicationController
   include NestedUnderRepo
+  include RequiresCurrentUser
 
   # GET /issues
   # GET /issues.json
