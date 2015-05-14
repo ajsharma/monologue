@@ -3,21 +3,13 @@ default: &default
   encoding: utf8
   pool: <%= ENV['DB_POOL'] || 2 %>
   reaping_frequency: <%= ENV['DB_REAPING_FREQUENCY'] || 30 %>
+  url: <%= ENV['DATABASE_URL'] %>
 
 development:
   <<: *default
-  database: <%= Rails.application.secrets[:database][:name] %>
-  host: <%= Rails.application.secrets[:database][:host] %>
-  password: <%= Rails.application.secrets[:database][:password] %>
-  username: <%= Rails.application.secrets[:database][:username] %>
 
 test:
   <<: *default
-  database: <%= Rails.application.secrets[:database][:name] %>
-  host: <%= Rails.application.secrets[:database][:host] %>
-  password: <%= Rails.application.secrets[:database][:password] %>
-  username: <%= Rails.application.secrets[:database][:username] %>
 
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
