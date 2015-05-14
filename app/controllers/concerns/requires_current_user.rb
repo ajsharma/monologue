@@ -8,6 +8,4 @@ module RequiresCurrentUser
   def require_current_user
     redirect_to :signin unless current_user.present?
   end
-
-
 end
