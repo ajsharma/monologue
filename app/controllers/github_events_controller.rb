@@ -1,6 +1,5 @@
 class GithubEventsController < ApplicationController
   include NestedUnderRepo
-  include RequiresCurrentUser
 
   # GET /github_events
   # GET /github_events.json
