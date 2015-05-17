@@ -8,7 +8,10 @@ class IssuesController < ApplicationController
     @members = repository_members
     @open_issues = open_issues
     @closed_issues = closed_issues
-    @issues_data_series = IssuesDataSeries.new @open_issues, @closed_issues
+    @issues_data_series = IssuesDataSeries.new(@open_issues + @closed_issues,
+      since,
+      0.days.ago
+    )
   end
 
   private
@@ -18,7 +21,9 @@ class IssuesController < ApplicationController
   end
 
   def since
-    params[:since] || 1.days.ago.iso8601.to_s
+    return 1.days.ago unless params.has_key? :since
+
+    Time.parse params[:since]
   end
 
   def open_issues
@@ -37,7 +42,7 @@ class IssuesController < ApplicationController
         current_repository_full_name,
         assignee: member_name,
         sort: "updated",
-        since: since,
+        since: since.iso8601.to_s,
         state: "closed"
     end
   end
