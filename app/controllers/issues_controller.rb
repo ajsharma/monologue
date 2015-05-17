@@ -8,12 +8,17 @@ class IssuesController < ApplicationController
     @members = repository_members
     @open_issues = open_issues
     @closed_issues = closed_issues
+    @issues_data_series = IssuesDataSeries.new @open_issues, @closed_issues
   end
 
   private
 
   def current_github_username
     params[:username] || current_user_github_username
+  end
+
+  def since
+    params[:since] || 1.days.ago.iso8601.to_s
   end
 
   def open_issues
@@ -32,7 +37,7 @@ class IssuesController < ApplicationController
         current_repository_full_name,
         assignee: member_name,
         sort: "updated",
-        since: 1.days.ago.iso8601.to_s,
+        since: since,
         state: "closed"
     end
   end
