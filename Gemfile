@@ -6,6 +6,7 @@ gem 'dotenv-rails', :groups => [:development, :test]
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
+gem 'chartkick'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'

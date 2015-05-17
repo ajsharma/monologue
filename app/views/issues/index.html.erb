@@ -6,5 +6,6 @@
   <% end %>
 </ul>
 
+<%= render partial: "chart", locals: { data_series: @issues_data_series } %>
 <%= render partial: "list", locals: { title: "Closed Issues", issues: @closed_issues } %>
 <%= render partial: "list", locals: { title: "Open Issues", issues: @open_issues } %>
