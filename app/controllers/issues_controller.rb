@@ -8,7 +8,8 @@ class IssuesController < ApplicationController
     @members = repository_members
     @open_issues = open_issues
     @closed_issues = closed_issues
-    @issues_data_series = IssuesDataSeries.new(@open_issues + @closed_issues,
+    @issues_data_series = IssuesDataSeries.new(
+      @open_issues + @closed_issues,
       since,
       0.days.ago
     )

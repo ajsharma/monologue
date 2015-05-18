@@ -8,26 +8,36 @@ class IssuesDataSeries
   end
 
   def series
-    [
-      {
-        name: "Open Issues",
-        data: data
-      }
-    ]
+    @series ||= begin
+      milestone_titles.map do |milestone_title|
+        {
+          name: milestone_title || "No milestone",
+          data: milestone_data(milestone_title)
+        }
+      end
+    end
   end
 
   protected
 
-  def data
+  def milestone_titles
+    @milestone_titles ||= issues.map { |i| i.milestone.try(:title) }.uniq
+  end
+
+  def closing_times
+    @closing_times ||= begin
+      (issues.map(&:closed_at) + [starts_at, ends_at]).uniq.reject(&:nil?)
+    end
+  end
+
+  def milestone_data(milestone_title)
     d = {}
-
-    time = starts_at
-    begin
-      d[time] = issues.count do |issue|
-        issue.closed_at.nil? || (issue.closed_at > time)
+    closing_times.each do |closing_time|
+      d[closing_time] = issues.count do |issue|
+        (issue.milestone.try(:title) == milestone_title) &&
+        (issue.closed_at.nil? || (issue.closed_at > closing_time))
       end
-    end while (time += 3600) < ends_at
-
+    end
     d
   end
 end
