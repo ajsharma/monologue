@@ -8,8 +8,7 @@ Rails.application.routes.draw do
   get '/signin' => 'sessions#new', :as => :signin
   get '/signout' => 'sessions#destroy', :as => :signout
 
+  get '/orgs' => 'orgs#index', :as => :orgs
   get '/:org/repos' => 'repos#index', :as => :repos
   get '/:org/:repo/issues(/:username)' => 'issues#index', :as => :issues
-
-  root to: 'orgs#index'
 end
