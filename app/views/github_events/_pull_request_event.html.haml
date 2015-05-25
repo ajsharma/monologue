@@ -1,0 +1,6 @@
+%p{:class => "event-pull-request-action-#{github_event.payload.action.underscore.dasherize}"}
+  = github_event.payload.action.titlecase
+  pull request
+  %var= github_event.payload.pull_request.title
+  on
+  %var= github_event.repo.name

@@ -1,0 +1,8 @@
+%table.table
+  %thead
+    %tr
+      %th Org
+  %tbody
+    - @orgs.each do |org|
+      %tr
+        %td= link_to org.login, repos_path(org: org.login)

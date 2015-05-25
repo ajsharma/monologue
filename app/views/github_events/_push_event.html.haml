@@ -1,0 +1,9 @@
+%p.event-push
+  Pushed to
+  %var= github_event.payload.ref
+  on
+  %var= github_event.repo.name
+%ul
+  - github_event.payload.commits.each do |commit|
+    %li
+      = commit.message
