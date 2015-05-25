@@ -1,0 +1,20 @@
+!!! 5
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    = render 'layouts/head/app'
+    = render 'layouts/head/favicons'
+    %title= content_for?(:title) ? yield(:title) : "Monologue"
+    %meta{:content => "#{content_for?(:description) ? yield(:description) : "Monologue"}", :name => "description"}/
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = javascript_include_tag "//www.google.com/jsapi", "chartkick"
+    = csrf_meta_tags
+  %body
+    %header
+      = render 'layouts/navigation'
+    %main.container{:role => "main"}
+      = render 'layouts/messages'
+      = yield

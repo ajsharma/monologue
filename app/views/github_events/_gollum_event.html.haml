@@ -1,0 +1,5 @@
+- github_event.payload.pages.each do |page|
+  %p
+    = page.action.titlecase
+    wiki page
+    %var= page.title

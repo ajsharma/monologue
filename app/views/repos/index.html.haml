@@ -1,0 +1,9 @@
+%h1 Listing repos
+%table.table
+  %thead
+    %tr
+      %th Name
+  %tbody
+    - @repos.each do |repo|
+      %tr
+        %td= link_to repo.full_name, issues_path(org: repo_full_name_to_org(repo.full_name), repo: repo_full_name_to_name(repo.full_name))

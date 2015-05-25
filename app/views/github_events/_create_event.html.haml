@@ -1,0 +1,5 @@
+%p
+  Created #{github_event.payload.ref_type}
+  %var
+    = github_event.repo.name
+    \/#{github_event.payload.ref}
