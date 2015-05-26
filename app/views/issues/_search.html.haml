@@ -1,8 +1,6 @@
-= simple_form_for issues_search, url: issues_path, method: :get do |f|
+= simple_form_for issues_search, url: request.original_url, method: :get, html: {class: "form-inline"} do |f|
   = f.error_notification
 
-  .form-inputs
-    = f.input :since, as: :date, html5: true
+  = f.input :since, as: :date, html5: true
 
-  .form-actions
-    = f.button :submit, class: "btn-default"
+  = f.button :submit, "Search", class: "btn-default"
