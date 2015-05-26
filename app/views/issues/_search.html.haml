@@ -1,0 +1,8 @@
+= simple_form_for issues_search, url: issues_path, method: :get do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :since, as: :date, html5: true
+
+  .form-actions
+    = f.button :submit, class: "btn-default"
