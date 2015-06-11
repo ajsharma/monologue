@@ -1,11 +1,17 @@
-%ul.nav.nav-pills{:role => "tablist"}
-  - @members.each do |member|
-    %li
-      = link_to member.login, issues_path(org: current_org_name, repo: current_repo_name, username: member.login)
+.row
+  .col-md-12
+    %ul.nav.nav-pills{:role => "tablist"}
+      - @members.each do |member|
+        %li
+          = link_to member.login, issues_path(org: current_org_name, repo: current_repo_name, username: member.login)
 
-= render partial: "search", locals: { issues_search: @issues_search }
+.row
+  .col-md-12
+    = render partial: "search", locals: { issues_search: @issues_search }
 
 - if @issues_search.valid?
-  = render partial: "chart", locals: { data_series: @issues_data_series }
-  = render partial: "list", locals: { title: "Closed Issues", issues: @issues_search.closed_issues }
-  = render partial: "list", locals: { title: "Open Issues", issues: @issues_search.open_issues }
+  .col-md-6
+    = render partial: "chart", locals: { data_series: @issues_data_series }
+  .col-md-6
+    = render partial: "list", locals: { title: "Closed Issues", issues: @issues_search.closed_issues }
+    = render partial: "list", locals: { title: "Open Issues", issues: @issues_search.open_issues }
