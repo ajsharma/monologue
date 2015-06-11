@@ -6,5 +6,5 @@
   %tbody
     - issues.each do |issue|
       %tr
-        %td= issue.title
+        %td= link_to issue.title, issue.html_url
         %td= issue.assignee.login
