@@ -23,5 +23,5 @@ en:
   hello: "Hello world"
   helpers:
     submit:
-      get:
-        create: "Search"
+      issue:
+        index: "Search"
