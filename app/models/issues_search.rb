@@ -16,6 +16,10 @@ class IssuesSearch
     @since ||= 1.days.ago.to_s
   end
 
+  def issues
+    open_issues + closed_issues
+  end
+
   def open_issues
     @open_issues ||= begin
       scoped_members_names.flat_map do |member_name|
