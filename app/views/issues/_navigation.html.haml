@@ -1,0 +1,4 @@
+%ul.nav.nav-pills{:role => "tablist"}
+  - members.each do |member|
+    %li
+      = link_to member.login, user_issues_path(org: current_org_name, repo: current_repo_name, username: member.login)
