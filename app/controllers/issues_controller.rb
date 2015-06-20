@@ -12,7 +12,7 @@ class IssuesController < ApplicationController
 
     if @issues_search.valid?
       @issues_data_series = IssuesDataSeries.new(
-        @issues_search.open_issues + @issues_search.closed_issues,
+        @issues_search.issues,
         @issues_search.since,
         0.days.ago
       )
