@@ -10,5 +10,6 @@ Rails.application.routes.draw do
 
   get '/orgs' => 'orgs#index', :as => :orgs
   get '/:org/repos' => 'repos#index', :as => :repos
-  get '/:org/:repo/issues(/:username)' => 'issues#index', :as => :issues
+  get '/:org/:repo/issues' => 'issues#index', :as => :issues
+  get '/:org/:repo/issues(/:username)' => 'issues#user', :as => :user_issues
 end

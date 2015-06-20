@@ -19,6 +19,21 @@ class IssuesController < ApplicationController
     end
   end
 
+  def user
+    @members = repository_members
+    @issues_search = IssuesSearch.new(
+      default_issues_search_params.merge issues_search_params
+    )
+
+    if @issues_search.valid?
+      @issues_data_series = IssuesDataSeries.new(
+        @issues_search.open_issues + @issues_search.closed_issues,
+        @issues_search.since,
+        0.days.ago
+      )
+    end
+  end
+
   private
 
   def issues_search_params
