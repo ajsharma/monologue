@@ -7,7 +7,8 @@
     = render partial: "search", locals: { issues_search: @issues_search }
 
 - if @issues_search.valid?
-  .col-md-6
-    = render partial: "list", locals: { title: "Closed Issues", issues: @issues_search.closed_issues }
-  .col-md-6
-    = render partial: "list", locals: { title: "Open Issues", issues: @issues_search.open_issues }
+  .row
+    .col-md-6
+      = render partial: "list", locals: { title: "Closed Issues", issues: @issues_search.closed_issues }
+    .col-md-6
+      = render partial: "list", locals: { title: "Open Issues", issues: @issues_search.open_issues }
